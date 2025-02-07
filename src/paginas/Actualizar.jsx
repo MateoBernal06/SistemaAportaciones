@@ -7,39 +7,40 @@ import axios from 'axios';
 
 
 const Actualizar = () => {
-    const { id } = useParams() // Recibe el id del veterinario
-    const [paciente, setPaciente] = useState({}) // Almacena los datos del veterinario
-    const [mensaje, setMensaje] = useState({}) // Almacena el mensaje de error
+    const { id } = useParams() 
+    const [aportante, setaportante] = useState({}) 
+    const [mensaje, setMensaje] = useState({}) 
 
-    useEffect(() => { // Funcion para consultar los datos del veterinario
-        const consultarPaciente = async () => { //lo que hace es consultar los datos del veterinario
+    useEffect(() => { 
+        const consultarAportante = async () => { 
             try {
-                const token = localStorage.getItem('token') //almacena el token 
-                const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/${id}` //almacena la url paciente
-                const options = { //almacena las opciones
+                const token = localStorage.getItem('token') 
+                const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/${id}` 
+                const options = { 
                     headers: {
-                        'Content-Type': 'application/json',//almacena el tipo de contenido
-                        Authorization: `Bearer ${token}` //almacena el token
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}` 
                     }
                 }
-                const respuesta = await axios.get(url, options) //almacena la respuesta de la consulta
-                setPaciente(respuesta.data.paciente) //almacena los datos del veterinario en el estado
-            } catch (error) { //manejo de errores
-                setMensaje({ respuesta: error.response.data.msg, tipo: false })
+                const respuesta = await axios.get(url, options) 
+                setaportante(respuesta.data.aportante) 
+            } catch (error) { 
+                console.log(error)
             }
         }
-        consultarPaciente() //llama a la funcion consultarPaciente
+        consultarAportante() 
     }, [])
 
-    return ( //retorna el html
+
+    return ( 
         <div>
-            <h1 className='font-black text-4xl text-gray-500'>Actualizar Paciente</h1>
+            <h1 className='font-black text-4xl text-gray-500'>Actualizar Aportante</h1>
             <hr className='my-4' />
-            <p className='mb-8'>Este módulo te permite actualizar los datos de un paciente registrado</p>
+            <p className='mb-8'>Este módulo te permite actualizar los datos de un aportante registrado</p>
             {
-                Object.keys(paciente).length != 0 ?
+                Object.keys(aportante).length != 0 ?
                     (
-                        <Formulario paciente={paciente}/>
+                        <Formulario aportante={aportante}/>
                     )
                     :
                     (

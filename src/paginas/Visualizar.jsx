@@ -15,7 +15,7 @@ const Visualizar = () => {
     const [aportante, setAportante] = useState({})
     const [mensaje, setMensaje] = useState({})
 
-    const formatFecha = (fecha) => {
+    /*const formatFecha = (fecha) => {
         if (!fecha) return "";
         const date = new Date(fecha);
         return new Intl.DateTimeFormat("es-ES", {
@@ -24,7 +24,7 @@ const Visualizar = () => {
         month: "2-digit",
         year: "numeric",
     }).format(date);
-    };
+    };*/
 
     useEffect(() => {
         const consultarAportantes = async () => {
@@ -71,6 +71,10 @@ const Visualizar = () => {
                                             {aportante.nombre}
                                         </p>
                                         <p className="text-md text-gray-00 mt-4">
+                                            <span className="text-gray-600 uppercase font-bold">* Apellido del aportante: </span>
+                                            {aportante.apellido}
+                                        </p>
+                                        <p className="text-md text-gray-00 mt-4">
                                             <span className="text-gray-600 uppercase font-bold">* celular: </span>
                                             {aportante.celular}
                                         </p>
@@ -78,18 +82,6 @@ const Visualizar = () => {
                                         <p className="text-md text-gray-00 mt-4">
                                             <span className="text-gray-600 uppercase font-bold">* Email: </span>
                                             {aportante.email}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Plan: </span>
-                                            {aportante.plan}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Fecha de reserva: </span>
-                                            {formatFecha(aportante.reserva)}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Fecha de entrega: </span>
-                                            {formatFecha(aportante.entrega)}
                                         </p>
                                         <p className="text-md text-gray-00 mt-4">
                                             <span className="text-gray-600 uppercase font-bold">* Estado: </span>

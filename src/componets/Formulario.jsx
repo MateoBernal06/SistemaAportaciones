@@ -2,22 +2,20 @@ import { useContext, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import AuthContext from "../context/AuthProvider"
 import axios from 'axios';
-import Mensaje from "./Alertas/Mensajes";
-
+import { toast } from 'react-toastify';
 
 export const Formulario = ({ aportante }) => {
 
     const { auth } = useContext(AuthContext)
     const navigate = useNavigate()
-    const [mensaje, setMensaje] = useState({})
     const [form, setform] = useState({
         nombre: aportante?.nombre ?? "",
         apellido: aportante?.apellido ?? "",
         email: aportante?.email ?? "",
         celular: aportante?.celular ?? "",
-        plan: aportante?.plan ?? "",
-        reserva: new Date(aportante?.reserva).toLocaleDateString('en-CA', {timeZone: 'UTC'}) ?? "",
-        entrega: new Date(aportante?.entrega).toLocaleDateString('en-CA', {timeZone: 'UTC'}) ?? ""
+        //plan: aportante?.plan ?? "",
+        //reserva: new Date(aportante?.reserva).toLocaleDateString('en-CA', {timeZone: 'UTC'}) ?? "",
+        //entrega: new Date(aportante?.entrega).toLocaleDateString('en-CA', {timeZone: 'UTC'}) ?? ""
     })
 
 
@@ -30,47 +28,45 @@ export const Formulario = ({ aportante }) => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+    
+        try {
+        const token = localStorage.getItem("token");
+        const options = {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            },
+        };
 
         if (aportante?._id) {
-            const token = localStorage.getItem('token')
-            const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/actualizar/${aportante?._id}`
-            const options = {
-                headers: {
-                    method: 'PUT',
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            }
-            await axios.put(url, form, options)
-            navigate('/dashboard/listar')
+        const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/actualizar/${aportante?._id}`;
+        await axios.put(url, form, options);
+        toast.success("Aportante actualizado exitosamente!", {
+            position: "top-right",
+            autoClose: 3000,
+        });
+        } else {
+        form.id = auth._id;
+        const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/registro`;
+        await axios.post(url, form, options);
+        toast.success("Aportante registrado exitosamente!", {
+            position: "top-right",
+            autoClose: 3000,
+        });
         }
-        else {
-            try {
-                const token = localStorage.getItem('token')
-                form.id = auth._id
-                const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/registro`
-                const options = {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-                await axios.post(url, form, options)
-                navigate('/dashboard/listar')
-            } catch (error) {
-                setMensaje({ respuesta: error.response.data.msg, tipo: false })
-                setTimeout(() => {
-                    setMensaje({})
-                }, 3000);
-            }
-        }
+        navigate("/dashboard/listar");
+    } catch (error) {
+        toast.error(error.response?.data?.msg || "Ocurrió un error", {
+        position: "top-right",
+        autoClose: 3000,
+        });
     }
+    };
 
     return (
 
         <form onSubmit={handleSubmit}>
-            {Object.keys(mensaje).length > 0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
             <div>
                 <label
                     htmlFor='nombre:'
@@ -87,14 +83,14 @@ export const Formulario = ({ aportante }) => {
             </div>
             <div>
                 <label
-                    htmlFor='nombre:'
+                    htmlFor='apellido:'
                     className='text-gray-700 uppercase font-bold text-sm'>Apellido del aportante: </label>
                 <input
                     id='apellido'
                     type="text"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                     placeholder='apellido del aportante'
-                    name='nombre'
+                    name='apellido'
                     value={form.apellido}
                     onChange={handleChange}
                 />
@@ -124,48 +120,6 @@ export const Formulario = ({ aportante }) => {
                     placeholder='celular del propietario'
                     name='celular'
                     value={form.celular}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='plan:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Nombre del plan: </label>
-                <input
-                    id='plan'
-                    type="text"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='nombre del plan'
-                    name='plan'
-                    value={form.plan}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='Reserva:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Fecha de reservacion: </label>
-                <input
-                    id='reserva'
-                    type="date"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='reservacion'
-                    name='reserva'
-                    value={form.reserva}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='entrega:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Fecha de entrega: </label>
-                <input
-                    id='entrega'
-                    type="date"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='entrega'
-                    name='entrega'
-                    value={form.entrega}
                     onChange={handleChange}
                 />
             </div>

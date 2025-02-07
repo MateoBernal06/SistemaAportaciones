@@ -33,7 +33,7 @@ const Tabla = () => {
     const eliminarAportantes = async (id) => {
         try {
             const confirmar = window.confirm(
-                "Vas a registrar la salida de un paciente, ¿Estás seguro de realizar esta acción?"
+                "Vas a borrar al aportante, ¿Estás seguro de realizar esta acción?"
             );
             if (confirmar) {
                 const token = localStorage.getItem("token");
@@ -58,7 +58,7 @@ const Tabla = () => {
         listarAportantes();
     }, []);
 
-    const formatFecha = (fecha) => {
+    /*const formatFecha = (fecha) => {
         if (!fecha) return "";
         const date = new Date(fecha);
         return new Intl.DateTimeFormat("es-ES", {
@@ -67,7 +67,7 @@ const Tabla = () => {
         month: "2-digit",
         year: "numeric",
     }).format(date);
-    };
+    };*/
     
 
     return (
@@ -82,9 +82,8 @@ const Tabla = () => {
                             <th className="p-2">N°</th>
                             <th className="p-2">Nombre</th>
                             <th className="p-2">Apellido</th>
+                            <th className="p-2">Email</th>
                             <th className="p-2">Celular</th>
-                            <th className="p-2">Reserva</th>
-                            <th className="p-2">Entrega</th>
                             <th className="p-2">Acciones</th>
                         </tr>
                     </thead>
@@ -97,9 +96,8 @@ const Tabla = () => {
                                 <td>{index + 1}</td>
                                 <td>{aportante.nombre}</td>
                                 <td>{aportante.apellido}</td>
+                                <td>{aportante.email}</td>
                                 <td>{aportante.celular}</td>
-                                <td>{formatFecha(aportante.reserva)}</td>
-                                <td>{formatFecha(aportante.entrega)}</td>
                                 <td>
                                     <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                                         {aportante.estado ? "Activo" : "Inactivo"}
