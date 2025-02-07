@@ -2,6 +2,7 @@
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import logoAso from '../assets/logos/logo_aso.jpg'
 import { useAuth } from '../context/AuthProvider'
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Dashboard = () => {
     const location = useLocation()
@@ -20,18 +21,29 @@ const Dashboard = () => {
                 <p className='text-slate-400 text-center my-4 text-sm'> Rol - {auth?.rol}</p>
                 <hr className="mt-5 border-slate-500" />
 
+
                 <ul className="mt-5">
 
                     <li className="text-center">
+
+                        <Dropdown>
+                            <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+                                Opciones Aportantes
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to='/dashboard/crear' >
+                                    Crear Aportante
+                                </Dropdown.Item>
+                                <Dropdown.Item as={Link} to='/dashboard/listar'>
+                                    Listar Aportantes
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+
+                    </li>
+
+                    <li className="text-center">
                         <Link to='/dashboard' className={`${urlActual === '/dashboard' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Perfil</Link>
-                    </li>
-
-                    <li className="text-center">
-                        <Link to='/dashboard/listar' className={`${urlActual === '/dashboard/listar' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Listar Aportantes</Link>
-                    </li>
-
-                    <li className="text-center">
-                        <Link to='/dashboard/crear' className={`${urlActual === '/dashboard/crear' ? 'text-slate-100 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Crear Aportante</Link>
                     </li>
                 </ul>
 
