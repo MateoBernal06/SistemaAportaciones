@@ -3,14 +3,20 @@ import aportacionesContext from "../../context/AportacionesProvider"
 
 
 const ModalAportacion = ({ idAportante }) => {
-    console.log("ID Aportante:", idAportante);
     const { handelModal,registrarAportacion,setModal } = useContext(aportacionesContext)
 
+    const obtenerFechaActual = () => {
+        const hoy = new Date();
+        const year = hoy.getFullYear();
+        const month = String(hoy.getMonth() + 1).padStart(2, "0"); 
+        const day = String(hoy.getDate()).padStart(2, "0"); 
+        return `${year}-${month}-${day}`;
+    };
+
     const [form, setForm] = useState({
-        //nombre: "",
         tipoAportacion: "",
         descripcion: "",
-        reserva: "",
+        reserva: obtenerFechaActual(),
         entrega: "",
         aportante: idAportante
     })
@@ -74,6 +80,7 @@ const ModalAportacion = ({ idAportante }) => {
                         className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
                         placeholder='fecha de reservacion de la aportacion'
                         name='reserva'
+                        value={form.reserva}
                         onChange={handleChange}
                     />
                 </div>

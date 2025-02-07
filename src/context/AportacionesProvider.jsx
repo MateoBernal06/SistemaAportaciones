@@ -37,14 +37,44 @@ const AportacionesProvider = ({ children }) => {
             setAportaciones([respuesta.data.aportacion, ...aportaciones]);
         } catch (error) {
             setMensaje({
-                respuesta: error.response?.data?.msg || "Error al registrar plan de aportacion",
+                respuesta: error.response?.data?.msg || "Error al registrar aportación",
+                tipo: false,
+            });
+        }
+    };
+
+    const actualizarAportacion = async (id, datos) => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            setMensaje({ respuesta: "No tienes autorización", tipo: false });
+            return;
+        }
+        try {
+            const url = `${import.meta.env.VITE_BACKEND_URL}/aportacion/${id}`;
+            const options = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const respuesta = await axios.put(url, datos, options);
+            const updatedAportaciones = aportaciones.map((aport) =>
+                aport._id === id ? { ...aport, ...datos } : aport
+            );
+    
+            setAportaciones(updatedAportaciones);
+            setMensaje({ respuesta: respuesta.data?.msg, tipo: true });
+            setTimeout(() => setMensaje({}), 2000);
+        } catch (error) {
+            setMensaje({
+                respuesta: error.response?.data?.msg || "Error al actualizar la aportación",
                 tipo: false,
             });
         }
     };
 
     const handleDelete = async (id) => {
-        const confirmar = confirm("¿Estás seguro de eliminar el plan de aportacion?");
+        const confirmar = confirm("¿Estás seguro de eliminar la aportación?");
         if (!confirmar) return;
 
         const token = localStorage.getItem("token");
@@ -62,13 +92,12 @@ const AportacionesProvider = ({ children }) => {
                 },
             };
             const response = await axios.delete(url, options);
-            const updatedAportaciones = aportaciones.filter((aportacion) => aportacion._id !== id);
-            setAportaciones(updatedAportaciones);
+            setAportaciones(aportaciones.filter((aportacion) => aportacion._id !== id));
             setMensaje({ respuesta: response.data?.msg, tipo: true });
             setTimeout(() => setMensaje({}), 2000);
         } catch (error) {
             setMensaje({
-                respuesta: error.response?.data?.msg || "Error al eliminar plan de aportacion",
+                respuesta: error.response?.data?.msg || "Error al eliminar la aportación",
                 tipo: false,
             });
         }
@@ -76,26 +105,38 @@ const AportacionesProvider = ({ children }) => {
 
     const handleStatus = async (id) => {
         const token = localStorage.getItem("token");
+        if (!token) {
+            setMensaje({ respuesta: "No tienes autorización", tipo: false });
+            return;
+        }
+    
         try {
-            const confirmar = confirm("Vas a finalizar el plan de aportacion de un aportante, ¿Estás seguro de realizar esta acción?");
-            if (confirmar) {
-                const url = `${import.meta.env.VITE_BACKEND_URL}/aportacion/estado/${id}`;
-                const options = {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                };
-                const response = await axios.post(url, {}, options);
-                const updatedAportaciones = aportaciones.filter((aportacion) => aportacion._id !== id);
-                setAportaciones(updatedAportaciones);
-                setMensaje({ respuesta: response.data?.msg, tipo: false });
-                setTimeout(() => {
-                    setMensaje({});
-                }, 2000);
-            }
+            const confirmar = confirm("¿Seguro que deseas finalizar esta aportación?");
+            if (!confirmar) return;
+    
+            const url = `${import.meta.env.VITE_BACKEND_URL}/aportacion/estado/${id}`;
+            const options = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+    
+            const response = await axios.post(url, {}, options);
+    
+            const updatedAportaciones = aportaciones.map((aportacion) => 
+                aportacion._id === id ? { ...aportacion, estado: false } : aportacion
+            );
+    
+            setAportaciones(updatedAportaciones);
+            setMensaje({ respuesta: response.data?.msg, tipo: true });
+    
+            setTimeout(() => setMensaje({}), 2000);
         } catch (error) {
-            setMensaje({ respuesta: error.response?.data?.msg || "Error al actualizar estado", tipo: false });
+            setMensaje({
+                respuesta: error.response?.data?.msg || "Error al actualizar el estado",
+                tipo: false,
+            });
         }
     };
 
@@ -108,6 +149,7 @@ const AportacionesProvider = ({ children }) => {
                 aportaciones,
                 setAportaciones,
                 registrarAportacion,
+                actualizarAportacion,
                 handleDelete,
                 handleStatus,
                 mensaje,
@@ -120,5 +162,3 @@ const AportacionesProvider = ({ children }) => {
 
 export { AportacionesProvider };
 export default aportacionesContext;
-
-
