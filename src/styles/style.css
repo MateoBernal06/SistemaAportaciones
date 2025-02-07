@@ -1,0 +1,213 @@
+
+.login-register-mod{
+    display: flex;
+    gap: 30px;
+    justify-content: right;
+    align-items: center;
+    margin-right: 80px;
+}
+
+.botones-logo-frase{
+    display:  grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: rgb(22, 22, 21);
+    height: 80px;
+}
+
+.lugar-logo, .lugar-frase{
+    align-content: center;
+}
+
+.frase{
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    width: 80px;
+    height: 60px;
+    margin-left: 100px;
+}
+
+.imagen-desfile{
+    height: 450px;
+    width: 450px;
+}
+
+.lugar-desfile{
+    background-color: rgb(224, 83, 58);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.descripcion-imagen{
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    padding-bottom: 30px;
+    text-align: center;
+    justify-items: center;
+}
+
+.titulo-app, .pregunta{
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 8px;
+}
+
+
+.descripcion{
+    text-align: left;
+    font-size: 20px;
+}
+
+.lugar-imagen-descripcion{
+    justify-items: center;
+}
+
+.lugar-descripcion{
+    padding: 15px;
+    margin: 20px;
+    border: solid black;
+}
+
+.respuestas-pregunta{
+    font-size: 20px;
+    text-align: left;
+}
+
+.imagenes-aso{
+    width: 600px;
+    height: 350px;
+    box-shadow: 0px 0px 20px 10px #080909;
+}
+
+.logo-aso{
+    width: 300px;
+    height: 200px;
+}
+
+.pie-pagina{
+    background-color: rgb(22, 22, 21);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+.pie{
+    margin-top: 10px;
+    list-style: none;
+    text-align: center;
+    color: white;
+}
+
+.redes{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.logo-pie{
+    height: 50px;
+}
+
+.logo-redes{
+    width: 50px;
+    height: 50px;
+}
+
+@media (max-width: 768px) {
+    .botones-logo-frase{
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .lugar-logo{
+        grid-row: 1;
+        grid-column: 1/2;
+    }
+
+    .login-register-mod{
+        grid-row: 1;
+        grid-column: 2/3;
+        gap: 10px;
+    }
+
+    .lugar-frase{
+        grid-row: 2;
+        grid-column: 1/4;
+        padding: 10px;
+    }
+
+    .logo{
+        width: 60px;
+        height: 50px;
+        margin-left: 10px;
+    }
+
+    .imagen-desfile{
+        margin-top: 5px;
+        width: 350px;
+        height: 250px;
+    }
+
+    .descripcion-imagen{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+    }
+
+    .lugar-descripcion{
+        padding: 10px;
+        margin: 10px;
+        border: solid black;
+        width: 300px;
+    }
+
+    .descripcion, .respuestas-pregunta{
+        font-size: 17px;
+    }
+
+    .imagenes-aso{
+        width: 300px;
+        height: 250px;
+    }
+
+    .titulo-app, .pregunta{
+        font-size: 25px;
+    }
+
+    .lugar-desfile{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+        justify-items: center;
+    }
+
+    .pie-pagina{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .imagen-desfile{
+        height: 350px;
+        width: 300px;
+    }
+
+    .botones-logo-frase{
+        height: 100px;
+    }
+
+    .imagenes-aso{
+        width: 450px;
+        height: 350px;
+    }
+}
