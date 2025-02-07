@@ -24,7 +24,7 @@ import { AuthProvider } from './context/AuthProvider'
 import { PrivateRoute } from './routes/PrivateRoute'
 import Restablecer from './paginas/Restablecer'
 import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
-import { TratamientosProvider } from './context/TratamientosProvider'
+import { AportacionesProvider } from './context/AportacionesProvider'
 
 
 
@@ -33,7 +33,7 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
-          <TratamientosProvider>
+          <AportacionesProvider>
             <ToastContainer />
             <Routes>
 
@@ -67,7 +67,7 @@ function App() {
               }/>
 
             </Routes>
-          </TratamientosProvider>
+          </AportacionesProvider>
         </AuthProvider>
       </BrowserRouter>
     </>

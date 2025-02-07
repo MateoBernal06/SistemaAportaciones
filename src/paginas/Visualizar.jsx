@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Mensaje from '../componets/Alertas/Mensajes';
-import ModalTratamiento from '../componets/Modals/ModalTratamiento';
-import TratamientosContext from '../context/TratamientosProvider';
-import TablaTratamientos from '../componets/TablaTratamientos';
+import ModalAportacion from '../componets/Modals/ModalAportacion';
+import aportacionesContext from '../context/AportacionesProvider';
+import TablaAportaciones from '../componets/TablaAportaciones';
 import AuthContext from '../context/AuthProvider';
 
 const Visualizar = () => {
 
-    const {modal,handleModal,tratamientos,setTratamientos} = useContext(TratamientosContext)
+    const {modal,handleModal,aportaciones,setTratamientos} = useContext(aportacionesContext)
     const { auth } = useContext(AuthContext)
     const { id } = useParams()
     const [aportante, setAportante] = useState({})
@@ -95,15 +95,15 @@ const Visualizar = () => {
                                 <hr className='my-4' />  
                                 {Object.keys(mensaje).length>0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
                                 <div className='flex justify-between items-center'>
-                                    <p>Este submódulo te permite visualizar los tratamientos del aportante</p>
+                                    <p>Este submódulo te permite visualizar los planes de aportcion de los aportantes</p>
                                 </div>
 
-                                {modal &&(<ModalTratamiento idaportante={aportante._id} />)}
+                                {modal &&(<ModalAportacion idAportante={aportante._id} />)}
                                 {
-                                    tratamientos.length == 0 ?
+                                    aportaciones.length == 0 ?
                                     <Mensaje tipo={'active'}>{'No existen registros'}</Mensaje>
                                     :
-                                    <TablaTratamientos tratamientos={tratamientos} />
+                                    <TablaAportaciones aportaciones={aportaciones} />
                                 }
 
                             </>
