@@ -40,28 +40,27 @@ export const Formulario = ({ aportante }) => {
         };
 
         if (aportante?._id) {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/actualizar/${aportante?._id}`;
-        await axios.put(url, form, options);
-        toast.success("Aportante actualizado exitosamente!", {
-            position: "top-right",
-            autoClose: 3000,
-        });
+            const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/actualizar/${aportante?._id}`;
+            await axios.put(url, form, options);
+            toast.success("Aportante actualizado exitosamente!", {
+                position: "top-right",
+                autoClose: 3000,
+            });
         } else {
-        form.id = auth._id;
-        const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/registro`;
-        await axios.post(url, form, options);
+            form.id = auth._id;
+            const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/registro`;
+            await axios.post(url, form, options);
+        }
+        navigate("/dashboard/listar");
         toast.success("Aportante registrado exitosamente!", {
             position: "top-right",
             autoClose: 3000,
         });
-        }
-        navigate("/dashboard/listar");
     } catch (error) {
         toast.error(error.response?.data?.msg || "Ocurrió un error", {
         position: "top-right",
-        autoClose: 3000,
-        });
-    }
+        autoClose: 3000,});
+        }
     };
 
     return (
@@ -129,7 +128,6 @@ export const Formulario = ({ aportante }) => {
                     text-slate-300 uppercase font-bold rounded-lg 
                     hover:bg-gray-900 cursor-pointer transition-all'
                     value={aportante?._id ? 'Actualizar aportante' : 'Registrar aportante'} />
-
         </form>
     )
 }

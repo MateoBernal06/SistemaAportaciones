@@ -5,7 +5,6 @@ import Mensaje from '../componets/Alertas/Mensajes';
 import axios from 'axios';
 
 
-
 const Actualizar = () => {
     const { id } = useParams() 
     const [aportante, setaportante] = useState({}) 

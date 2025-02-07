@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthProvider";
 import Mensaje from "./Alertas/Mensajes";
+import { toast } from "react-toastify";
 
 const Tabla = () => {
     const { auth } = useContext(AuthContext);
@@ -23,17 +24,23 @@ const Tabla = () => {
                 },
             };
             const respuesta = await axios.get(url, options);
+            toast.success('Aportantes cargados correctamente', { 
+                position: 'top-right', 
+                autoClose: 3000});
             setAportantes(respuesta.data, ...aportantes);
+
         } catch (error) {
             console.log(error);
-            setMensaje({ tipo: false, respuesta: "Error al cargar pacientes" });
+            toast.error('Error al cargar aportantes', { 
+                position: 'top-right', 
+                autoClose: 3000 });
         }
     };
 
     const eliminarAportantes = async (id) => {
         try {
             const confirmar = window.confirm(
-                "Vas a borrar al aportante, ¿Estás seguro de realizar esta acción?"
+                "¿Estás seguro de eliminar al aportante?"
             );
             if (confirmar) {
                 const token = localStorage.getItem("token");
@@ -46,11 +53,14 @@ const Tabla = () => {
                     salida: new Date().toString(),
                 };
                 await axios.request({ method: "DELETE", url, headers, data });
+                toast.success('Aportante eliminado correctamente', {
+                    position: 'top-right', 
+                    autoClose: 3000})
                 listarAportantes();
             }
         } catch (error) {
             console.log(error);
-            setMensaje({ tipo: false, respuesta: "Error al eliminar aportante" });
+            toast.error('Error al cargar aportante', { position: 'top-right' });
         }
     };
 
@@ -72,7 +82,6 @@ const Tabla = () => {
 
     return (
         <>
-            {mensaje && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
             {aportantes.length === 0 ? (
                 <Mensaje tipo={"active"}>{"No existen registros"}</Mensaje>
             ) : (
