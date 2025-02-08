@@ -2,7 +2,7 @@ import React from 'react'
 import { CardPerfil } from '../componets/Perfil/CardPerfil'
 import Password from '../componets/Perfil/Password'
 import FormularioPerfil from '../componets/Perfil/FormularioPerfil'
-import { CardPerfilPaciente } from '../componets/Perfil/CardPerfilPaciente'
+import { CardPerfilAportante } from '../componets/Perfil/CardPerfilAportante'
 import AuthContext from '../context/AuthProvider'
 import { useContext } from 'react'
 
@@ -16,8 +16,8 @@ const Perfil = () => {
                 <p className='mb-8'>Este módulo te permite visualizar el perfil del usuario......</p>
             </div>
             {
-                "propietario" in auth 
-                    ? (<CardPerfilPaciente/>)
+                "aportante" in auth 
+                    ? (<CardPerfilAportante/>)
                     : (
                         <div className='flex justify-around gap-x-8 flex-wrap gap-y-8 md:flex-nowrap'>
                             <div className='w-full md:w-1/2'>

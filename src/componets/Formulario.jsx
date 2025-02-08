@@ -102,8 +102,7 @@ export const Formulario = ({ aportante }) => {
                     id='email'
                     type="email"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='email del propietario'
-                    name='email'
+                    placeholder='email del aportante'                    name='email'
                     value={form.email}
                     onChange={handleChange}
                 />
@@ -116,7 +115,7 @@ export const Formulario = ({ aportante }) => {
                     id='celular'
                     type="number"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='celular del propietario'
+                    placeholder='celular del aportante'
                     name='celular'
                     value={form.celular}
                     onChange={handleChange}

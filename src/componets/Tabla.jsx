@@ -16,7 +16,7 @@ const Tabla = () => {
     const listarAportantes = async () => {
         try {
             const token = localStorage.getItem("token");
-            const url = `${import.meta.env.VITE_BACKEND_URL}/aportantes/`;
+            const url = `${import.meta.env.VITE_BACKEND_URL}/aportantes`;
             const options = {
                 headers: {
                     "Content-Type": "application/json",
