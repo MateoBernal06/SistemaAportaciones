@@ -5,6 +5,9 @@ import './styles/style_dashboard.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// aportante
+import PerfilAportante from './paginas/PerfilAportante'
+
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Auth from './layout/Auth'
@@ -14,6 +17,7 @@ import { Register } from './paginas/Register'
 import { Forgot } from './paginas/Forgot'
 import { NotFound } from './paginas/NotFound'
 import Dashboard from './layout/Dashboard'
+import DashboardAportante from './layout/DashboardAportante'
 import Listar from './paginas/Listar'
 import Visualizar from './paginas/Visualizar'
 import Crear from './paginas/Crear'
@@ -60,6 +64,19 @@ function App() {
                             <Crear />
                           </PrivateRouteWithRole>
                       }/>
+                      <Route path='actualizar/:id' element={<Actualizar />} />
+                    </Route>
+                  </Routes>
+                </PrivateRoute>
+              }/>
+
+              <Route path='dashboard-aportante/*' element={
+                <PrivateRoute>
+                  <Routes>
+                    <Route element={<DashboardAportante />}>
+                      <Route index element={<PerfilAportante />} />
+                      <Route path='listar' element={<Listar />} />
+                      <Route path='visualizar/:id' element={<Visualizar />} />
                       <Route path='actualizar/:id' element={<Actualizar />} />
                     </Route>
                   </Routes>

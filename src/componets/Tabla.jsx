@@ -85,14 +85,15 @@ const Tabla = () => {
             {aportantes.length === 0 ? (
                 <Mensaje tipo={"active"}>{"No existen registros"}</Mensaje>
             ) : (
-                <table className="w-full mt-5 table-auto shadow-lg  bg-white">
-                    <thead className="bg-gray-800 text-slate-400">
+                <table className="w-full mt-5 table-auto shadow-lg bg-white">
+                    <thead className="bg-gray-800 text-slate-400 text-center">
                         <tr>
                             <th className="p-2">N°</th>
                             <th className="p-2">Nombre</th>
                             <th className="p-2">Apellido</th>
                             <th className="p-2">Email</th>
                             <th className="p-2">Celular</th>
+                            <th className="p-2">Estado</th>
                             <th className="p-2">Acciones</th>
                         </tr>
                     </thead>

@@ -38,7 +38,7 @@ const TablaAportaciones = () => {
             <table className='w-full mt-5 table-auto shadow-lg bg-white'>
                 <thead className='bg-gray-800 text-slate-400 text-center'>
                     <tr>
-                        <th className='p-2'>N°</th>
+                        <th className='p-2'>ID</th>
                         <th className='p-2'>Plan</th>
                         <th className='p-2'>Descripción</th>
                         <th className='p-2'>Reserva</th>
@@ -49,9 +49,9 @@ const TablaAportaciones = () => {
                 </thead>
                 <tbody>
                     {
-                        aportaciones.map((aportacion, index) => (
+                        aportaciones.map((aportacion) => (
                             <tr className="border-b hover:bg-gray-300 text-center" key={aportacion._id}>
-                                <td>{index + 1}</td>
+                                <td>{aportacion.aportante}</td>
                                 <td>{aportacion.tipoAportacion}</td>
                                 <td>{aportacion.descripcion}</td>
                                 <td>{formatFecha(aportacion.reserva)}</td>
