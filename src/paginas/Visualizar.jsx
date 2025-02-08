@@ -67,6 +67,10 @@ const Visualizar = () => {
                                 <div className='m-5 flex justify-between'>
                                     <div>
                                         <p className="text-md text-gray-00 mt-4">
+                                            <span className="text-gray-600 uppercase font-bold">* ID del aportante: </span>
+                                            {aportante._id}
+                                        </p>
+                                        <p className="text-md text-gray-00 mt-4">
                                             <span className="text-gray-600 uppercase font-bold">* Nombre del aportante: </span>
                                             {aportante.nombre}
                                         </p>

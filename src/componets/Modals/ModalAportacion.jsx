@@ -31,8 +31,14 @@ const ModalAportacion = ({ idAportante }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        registrarAportacion(form)
-        setModal(false)
+        
+        if (!form.tipoAportacion) {
+            alert("Debe seleccionar un tipo de aportación válido.");
+            return;
+        }
+    
+        registrarAportacion(form);
+        setModal(false);
     }
 
 
@@ -47,10 +53,11 @@ const ModalAportacion = ({ idAportante }) => {
                         className='text-white uppercase font-bold text-sm'>Nombre Aportacion: </label>
                     <select
                         id='tipoAportacion'
+                        value={form.tipoAportacion}
                         name='tipoAportacion'
                         onChange={handleChange}
                         className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'>
-                        <option value="">--- Seleccionar ---</option>
+                        <option value="" disabled>--- Seleccionar ---</option>
                         <option value="Tianlong">Tianlong</option>
                         <option value="Colacuerno">Colacuerno</option>
                         <option value="Celestial">Celestial</option>
