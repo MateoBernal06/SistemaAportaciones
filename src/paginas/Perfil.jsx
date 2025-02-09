@@ -15,21 +15,19 @@ const Perfil = () => {
                 <hr className='my-4' />
                 <p className='mb-8'>Este módulo te permite visualizar el perfil del usuario......</p>
             </div>
-            {
-                auth?.aportante
-                    ? (<CardPerfilAportante/>)
-                    : (
-                        <div className='flex justify-around gap-x-8 flex-wrap gap-y-8 md:flex-nowrap'>
-                        <div className='w-full md:w-1/2'>
-                            <FormularioPerfil/>
-                        </div>
-                        <div className='w-full md:w-1/2'>
-                            <CardPerfil/>
-                            <Password/>
-                        </div>
+            {auth?.rol === "aportante" && <CardPerfilAportante />}
+            {auth?.rol === "tesorero" && (
+                <div className='flex justify-around gap-x-8 flex-wrap gap-y-8 md:flex-nowrap'>
+                    <div className='w-full md:w-1/2'>
+                        <FormularioPerfil />
                     </div>
-                    )
-            }
+                    <div className='w-full md:w-1/2'>
+                        <CardPerfil />
+                        <Password />
+                    </div>
+                </div>
+            )}
+            {!auth?.rol && <p className="text-red-500">No tienes permisos para ver esta sección.</p>}
         </>
 
     )
