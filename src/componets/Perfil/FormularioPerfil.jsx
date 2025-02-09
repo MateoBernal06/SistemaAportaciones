@@ -69,8 +69,11 @@ const FormularioPerfil = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            
-
+            <div>
+                <h1 className='font-black text-4xl text-gray-500'>Actualizar Perfil</h1>
+                <hr className='my-4' />
+                <p className='mb-8'>Este módulo permite actualizar los datos del tesorero</p>
+            </div>
             <div>
                 <label htmlFor="nombre" className="text-gray-700 uppercase font-bold text-sm">Nombre: </label>
                 <input

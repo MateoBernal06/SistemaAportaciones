@@ -19,11 +19,13 @@ const Perfil = () => {
             {auth?.rol === "tesorero" && (
                 <div className='flex justify-around gap-x-8 flex-wrap gap-y-8 md:flex-nowrap'>
                     <div className='w-full md:w-1/2'>
-                        <FormularioPerfil />
+                        <CardPerfil />
                     </div>
                     <div className='w-full md:w-1/2'>
-                        <CardPerfil />
+                        <FormularioPerfil />
                         <Password />
+                    </div>
+                    <div className='w-full md:w-1/2'>
                     </div>
                 </div>
             )}

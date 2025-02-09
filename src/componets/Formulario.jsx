@@ -30,37 +30,45 @@ export const Formulario = ({ aportante }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        try {
-        const token = localStorage.getItem("token");
-        const options = {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            },
-        };
-
-        if (aportante?._id) {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/actualizar/${aportante?._id}`;
-            await axios.put(url, form, options);
-            toast.success("Aportante actualizado exitosamente!", {
+        if (!form.nombre || !form.apellido || !form.email || !form.celular) {
+            toast.error("Todos los campos son obligatorios", {
                 position: "top-right",
                 autoClose: 3000,
             });
-        } else {
-            form.id = auth._id;
-            const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/registro`;
-            await axios.post(url, form, options);
+            return;
         }
-        navigate("/dashboard/listar");
-        toast.success("Aportante registrado exitosamente!", {
+
+        try {
+            const token = localStorage.getItem("token");
+            const options = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+                },
+            };
+
+            if (aportante?._id) {
+                const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/actualizar/${aportante?._id}`;
+                await axios.put(url, form, options);
+                toast.success("Aportante actualizado exitosamente!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+            } else {
+                form.id = auth._id;
+                const url = `${import.meta.env.VITE_BACKEND_URL}/aportante/registro`;
+                await axios.post(url, form, options);
+            }
+            navigate("/dashboard/listar");
+            toast.success("Aportante registrado exitosamente!", {
+                position: "top-right",
+                autoClose: 3000,
+            });
+        } catch (error) {
+            toast.error(error.response?.data?.msg || "Ocurrió un error", {
             position: "top-right",
-            autoClose: 3000,
-        });
-    } catch (error) {
-        toast.error(error.response?.data?.msg || "Ocurrió un error", {
-        position: "top-right",
-        autoClose: 3000,});
-        }
+            autoClose: 3000,});
+            }
     };
 
     return (
@@ -102,7 +110,8 @@ export const Formulario = ({ aportante }) => {
                     id='email'
                     type="email"
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='email del aportante'                    name='email'
+                    placeholder='email del aportante'
+                    name='email'
                     value={form.email}
                     onChange={handleChange}
                 />

@@ -1,57 +1,54 @@
 
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider'
+import logoASO from '../assets/logos/logo_aso.jpg'
 
 const Dashboard = () => {
     const location = useLocation()
     const urlActual = location.pathname
     const { auth } = useAuth()
     
-    return (
-        <div className='md:flex md:min-h-screen'>
-
-            <div className='md:w-1/5 bg-gray-800 px-5 py-4'>
-                <h2 className='text-4xl font-black text-center text-slate-200'>Sistema de aportaciones</h2>
-                <hr className="mt-[20px] mb-[20px] border-slate-500" />
-                <img src="https://cdn-icons-png.flaticon.com/512/2138/2138508.png" alt="img-client" className="m-auto mt-8 p-1 border-2 border-slate-500 rounded-full" width={120} height={120} />
-                <p className='text-slate-400 text-center my-4 text-sm'> <span className='bg-green-600 mx-2 w-3 h-3 inline-block rounded-full'></span>Bienvenido - {auth?.nombre}</p>
-                <p className='text-slate-400 text-center my-4 text-sm'> Rol - {auth?.rol}</p>
-                <hr className="mt-5 border-slate-500" />
-
-                <ul className="mt-5">
-
-                    <li className="text-center">
-                        <Link to='/dashboard' className={`${urlActual === '/dashboard' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Perfil</Link>
-                    </li>
-                    <li className="text-center">
-                        <Link to='/dashboard/crear' className={`${urlActual === '/dashboard/crear' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Crear</Link>
-                    </li>
-                    <li className="text-center">
-                        <Link to='/dashboard/listar' className={`${urlActual === '/dashboard/listar' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Listar</Link>
-                    </li>
-                </ul>
+    return(
+        <div>
+            <div className='dashboard'>
+                <div>
+                    <nav className='botones-logo-frase'>
+                        <div className='lugar-logo'>
+                            <img className='logo' src={logoASO} alt="logo-esfot"/>
+                        </div>
+                        <div className='lugar-frase'>
+                            <p className='frase'>
+                                "En la ESFOT, el futuro se construye con ingenio, pasión y tecnología. ¡Sueña en grande, 
+                                innova sin límites y transforma el mundo a tu alcance!" 🚀
+                            </p>
+                        </div>
+                        <div className='login-register-mod'>
+                            <div className='text-md font-semibold text-slate-100'>
+                                Bienvenido - {auth.nombre}
+                            </div>
+                            <div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="border-2 border-green-600 rounded-full" width={50} height={50} />
+                            </div>
+                            <div>
+                                <Link to='/' className=" text-white mr-3 text-md block hover:bg-red-900 text-center
+                                bg-red-800 px-4 py-1 rounded-lg" onClick={()=>{localStorage.removeItem('token'), localStorage.removeItem('rol')}}>Salir</Link>
+                            </div>
+                        </div> 
+                    </nav>
+                </div>
+                <div className='barra-menu'>
+                    <ul className='menu'>
+                        <li><Link to='/dashboard' className={`${urlActual === '/dashboard' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Perfil</Link></li>
+                        <li><Link to='/dashboard/crear' className={`${urlActual === '/dashboard/crear' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Crear</Link></li>
+                        <li><Link to='/dashboard/listar' className={`${urlActual === '/dashboard/listar' ? 'text-slate-200 bg-gray-900 px-3 py-2 rounded-md text-center' : 'text-slate-600'} text-xl block mt-2 hover:text-slate-600`}>Listar</Link></li>
+                    </ul>
+                </div>
             </div>
-
-            <div className='flex-1 flex flex-col justify-between h-screen bg-gray-100'>
-                <div className='bg-gray-800 py-2 flex md:justify-end items-center gap-5 justify-center'>
-                    <div className='text-md font-semibold text-slate-100'>
-                        Bienvenido - {auth.nombre}
-                    </div>
-                    <div>
-                        <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="border-2 border-green-600 rounded-full" width={50} height={50} />
-                    </div>
-                    <div>
-                        <Link to='/' className=" text-white mr-3 text-md block hover:bg-red-900 text-center
-                        bg-red-800 px-4 py-1 rounded-lg" onClick={()=>{localStorage.removeItem('token'), localStorage.removeItem('rol')}}>Salir</Link>
-                    </div>
-                </div>
-                <div className='overflow-y-scroll p-8'>
-                    <Outlet />
-                </div>
-                <div className='bg-gray-800 h-12'>
-                    <p className='text-center  text-slate-100 leading-[2.9rem] underline'>Todos los derechos reservados</p>
-                </div>
-
+            <main className='contenido'>
+                <Outlet />
+            </main>
+            <div className='bg-[rgb(22,22,21)] h-12 fixed bottom-0 w-full'>
+                <p className='text-center text-slate-100 leading-[2.9rem] underline'>Todos los derechos reservados</p>
             </div>
         </div>
     )

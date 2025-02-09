@@ -1,19 +1,40 @@
 
-.barra-menu{
-    background-color: antiquewhite;
-    width: 800px;
-    margin: 0 auto; 
-    margin-top: 10px;
+.barra-menu {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-radius: 15px;
+    height: 70px;
+    border: solid black;
+    
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0 auto;
+    align-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+
+.contenido{
+    width: 1000px;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 180px;
+    margin-bottom: 100px;
+}
+
+
+.dashboard{
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
-.menu{
-    display: flex;
-    gap: 20px;
-    justify-content:space-around;
-    align-items: center;
-    list-style: none;
-    margin: 0 auto;
-}
+

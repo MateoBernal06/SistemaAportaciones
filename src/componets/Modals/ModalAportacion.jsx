@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
 import aportacionesContext from "../../context/AportacionesProvider"
-
+import { toast } from "react-toastify"
 
 const ModalAportacion = ({ idAportante }) => {
-    const { handelModal,registrarAportacion,setModal } = useContext(aportacionesContext)
+    const { handleModal,registrarAportacion,setModal } = useContext(aportacionesContext)
 
     const obtenerFechaActual = () => {
         const hoy = new Date();
@@ -31,10 +31,19 @@ const ModalAportacion = ({ idAportante }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        
-        if (!form.tipoAportacion) {
-            alert("Debe seleccionar un tipo de aportación válido.");
+
+        if (!form.tipoAportacion || !form.descripcion || !form.reserva || !form.entrega) {
+            toast.error("Todos los campos son obligatorios", {
+                position: "top-right",
+                autoClose: 2000,
+            });
             return;
+        }
+        else{
+            toast.success("Aportacion registrada con exito", {
+                position: "top-right",
+                autoClose: 2000,
+            })
         }
     
         registrarAportacion(form);
@@ -128,7 +137,7 @@ const ModalAportacion = ({ idAportante }) => {
 
                     <button className="sm:w-auto leading-3 text-center text-white px-6 py-4 rounded-lg bg-red-700 hover:bg-red-900"
 
-                        onClick={handelModal}>Cancelar</button>
+                        onClick={handleModal}>Cancelar</button>
                 </div>
 
             </form>

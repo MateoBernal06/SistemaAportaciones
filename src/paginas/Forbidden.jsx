@@ -1,4 +1,4 @@
-import logoDog from '../assets/doglost.jpg'
+import logoDragon from '../assets/charizard.jpg'
 
 export const Forbidden = () => {
     return (
@@ -6,7 +6,7 @@ export const Forbidden = () => {
 
         <div className="flex flex-col items-center justify-center">
 
-            <img class="object-cover h-80 w-80 rounded-full border-4 border-solid border-slate-600" src={logoDog} alt="image description"/>
+            <img className="object-cover h-80 w-80 rounded-full border-4 border-solid border-slate-600" src={logoDragon} alt="image description"/>
 
             <div className="flex flex-col items-center justify-center">
                 
