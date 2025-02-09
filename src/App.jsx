@@ -6,9 +6,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // aportante
-import PerfilAportante from './paginas/PerfilAportante'
+//import PerfilAportante from './paginas/PerfilAportante'
+//import DashboardAportante from './layout/DashboardAportante'
 
-
+import Dashboard from './layout/Dashboard'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Auth from './layout/Auth'
 import Login from './paginas/Login'
@@ -16,8 +17,7 @@ import { LandinPage } from './paginas/LandinPage'
 import { Register } from './paginas/Register'
 import { Forgot } from './paginas/Forgot'
 import { NotFound } from './paginas/NotFound'
-import Dashboard from './layout/Dashboard'
-import DashboardAportante from './layout/DashboardAportante'
+
 import Listar from './paginas/Listar'
 import Visualizar from './paginas/Visualizar'
 import Crear from './paginas/Crear'
@@ -70,7 +70,7 @@ function App() {
                 </PrivateRoute>
               }/>
 
-              <Route path='dashboard-aportante/*' element={
+              {/*<Route path='dashboard-aportante/*' element={
                 <PrivateRoute>
                   <Routes>
                     <Route element={<DashboardAportante />}>
@@ -81,7 +81,7 @@ function App() {
                     </Route>
                   </Routes>
                 </PrivateRoute>
-              }/>
+              }/>*/}
 
             </Routes>
           </AportacionesProvider>

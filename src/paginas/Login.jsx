@@ -33,13 +33,7 @@ const Login = () => {
             setAuth(respuesta.data);
             localStorage.setItem('token', respuesta.data.token);
             localStorage.setItem('rol', respuesta.data.rol);
-            
-            if (respuesta.data.rol === "aportante") {
-                navigate('/dashboard-aportante/');
-            } else {
-                navigate('/dashboard');
-            }
-            
+            navigate('/dashboard');
             toast.success(respuesta.data.msg);
         } catch (error) {
             toast.error(error.response.data.msg);
