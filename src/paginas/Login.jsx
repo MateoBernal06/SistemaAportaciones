@@ -36,8 +36,13 @@ const Login = () => {
             navigate('/dashboard');
             toast.success(respuesta.data.msg);
         } catch (error) {
-            toast.error(error.response.data.msg);
-            console.log(error.response.data.msg);
+            if (error.response) {
+                console.log(error.response.data.msg);
+            } else if (error.request) {
+                console.log("Error de red:", error.request);
+            } else {
+                console.log("Error desconocido:", error.message);
+            }
         }
     };
 
