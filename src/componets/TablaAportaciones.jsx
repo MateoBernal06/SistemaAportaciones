@@ -3,7 +3,7 @@ import { MdDeleteForever, MdOutlinePublishedWithChanges, MdOutlineEdit } from "r
 import aportacionesContext from "../context/AportacionesProvider";
 import AuthContext from "../context/AuthProvider";
 import ModalEditarAportacion from "../componets/Modals/ModalEditarAportacion";
-
+import { ToastContainer } from "react-toastify";
 
 
 const TablaAportaciones = () => {
@@ -36,6 +36,7 @@ const TablaAportaciones = () => {
 
     return (
         <>
+        <ToastContainer />
             <table className='w-full mt-5 table-auto shadow-lg bg-white'>
                 <thead className='bg-gray-800 text-slate-400 text-center'>
                     <tr>

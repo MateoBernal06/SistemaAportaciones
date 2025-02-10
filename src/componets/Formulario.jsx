@@ -75,10 +75,8 @@ export const Formulario = ({ aportante }) => {
                 autoClose: 3000,
             });
         } catch (error) {
-            toast.error(error.response?.data?.msg || "Ocurrió un error", {
-            position: "top-right",
-            autoClose: 3000,});
-            }
+            console.log(error.response?.data?.msg)
+        }
     };
 
     return (

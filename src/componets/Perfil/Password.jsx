@@ -46,16 +46,15 @@ const Password = () => {
             return
         }
 
-        const resultado = await actualizarPassword(form)
-        if (resultado.tipo) {
-            toast.success(resultado.respuesta, 
-                { autoClose: 3000 
-            });
-        } else {
-            toast.error(resultado.respuesta, 
-                { autoClose: 3000
-            });
-        }
+        toast.success('Password ctualizado con exito',{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     return (

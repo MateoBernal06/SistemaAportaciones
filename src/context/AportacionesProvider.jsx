@@ -34,10 +34,18 @@ const AportacionesProvider = ({ children }) => {
                 },
             };
             const respuesta = await axios.post(url, datos, options);
-            toast.success(respuesta.data?.msg)
+            toast.success("Aportacion registrada", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
             setAportaciones([respuesta.data.aportacion, ...aportaciones]);
         } catch (error) {
-            toast.error(error.response?.data?.msg || "Error al registrar aportación")
+            console.log(error.response?.data?.msg)
         }
     };
 
@@ -61,9 +69,17 @@ const AportacionesProvider = ({ children }) => {
             );
     
             setAportaciones(updatedAportaciones);
-            toast.success(respuesta.data?.msg)
+            toast.success("Aportacion actualizada", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
         } catch (error) {
-            toast.error(error.response?.data?.msg || "Error al actualizar la aportación")
+            console.log(error.response?.data?.msg )
         }
     };
 
@@ -119,7 +135,15 @@ const AportacionesProvider = ({ children }) => {
             );
             
             setAportaciones(updatedAportaciones);
-            toast.success(response.data?.msg)
+            toast.success("Estado de la aportacion actualizado",{
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
         } catch (error) {
             toast.error(error.response?.data?.msg)
         }
