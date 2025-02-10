@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import AuthContext from "../context/AuthProvider"
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 
 export const Formulario = ({ aportante }) => {
 
@@ -74,6 +74,7 @@ export const Formulario = ({ aportante }) => {
     return (
 
         <form onSubmit={handleSubmit}>
+        <ToastContainer/>
             <div>
                 <label
                     htmlFor='nombre:'

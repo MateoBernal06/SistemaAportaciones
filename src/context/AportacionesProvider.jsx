@@ -1,11 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const aportacionesContext = createContext();
 
 const AportacionesProvider = ({ children }) => {
     const [modal, setModal] = useState(false);
-    const [mensaje, setMensaje] = useState({});
     const [aportaciones, setAportaciones] = useState(() => {
         const storedAportaciones = localStorage.getItem("aportaciones");
         return storedAportaciones ? JSON.parse(storedAportaciones) : [];
@@ -34,12 +34,10 @@ const AportacionesProvider = ({ children }) => {
                 },
             };
             const respuesta = await axios.post(url, datos, options);
+            toast.success(respuesta.data?.msg)
             setAportaciones([respuesta.data.aportacion, ...aportaciones]);
         } catch (error) {
-            setMensaje({
-                respuesta: error.response?.data?.msg || "Error al registrar aportación",
-                tipo: false,
-            });
+            toast.error(error.response?.data?.msg || "Error al registrar aportación")
         }
     };
 
@@ -63,13 +61,9 @@ const AportacionesProvider = ({ children }) => {
             );
     
             setAportaciones(updatedAportaciones);
-            setMensaje({ respuesta: respuesta.data?.msg, tipo: true });
-            setTimeout(() => setMensaje({}), 2000);
+            toast.success(respuesta.data?.msg)
         } catch (error) {
-            setMensaje({
-                respuesta: error.response?.data?.msg || "Error al actualizar la aportación",
-                tipo: false,
-            });
+            toast.error(error.response?.data?.msg || "Error al actualizar la aportación")
         }
     };
 
@@ -93,13 +87,9 @@ const AportacionesProvider = ({ children }) => {
             };
             const response = await axios.delete(url, options);
             setAportaciones(aportaciones.filter((aportacion) => aportacion._id !== id));
-            setMensaje({ respuesta: response.data?.msg, tipo: true });
-            setTimeout(() => setMensaje({}), 2000);
+            toast.success(response.data?.msg)
         } catch (error) {
-            setMensaje({
-                respuesta: error.response?.data?.msg || "Error al eliminar la aportación",
-                tipo: false,
-            });
+            toast.error(error.response?.data?.msg || "Error al eliminar la aportación")
         }
     };
 
@@ -127,16 +117,11 @@ const AportacionesProvider = ({ children }) => {
             const updatedAportaciones = aportaciones.map((aportacion) => 
                 aportacion._id === id ? { ...aportacion, estado: false } : aportacion
             );
-    
+            
             setAportaciones(updatedAportaciones);
-            setMensaje({ respuesta: response.data?.msg, tipo: true });
-    
-            setTimeout(() => setMensaje({}), 2000);
+            toast.success(response.data?.msg)
         } catch (error) {
-            setMensaje({
-                respuesta: error.response?.data?.msg || "Error al actualizar el estado",
-                tipo: false,
-            });
+            toast.error(error.response?.data?.msg)
         }
     };
 
@@ -152,7 +137,6 @@ const AportacionesProvider = ({ children }) => {
                 actualizarAportacion,
                 handleDelete,
                 handleStatus,
-                mensaje,
             }}
         >
             {children}

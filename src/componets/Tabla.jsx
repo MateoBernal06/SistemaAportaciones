@@ -24,16 +24,10 @@ const Tabla = () => {
                 },
             };
             const respuesta = await axios.get(url, options);
-            toast.success('Aportantes cargados correctamente', { 
-                position: 'top-right', 
-                autoClose: 3000});
-            setAportantes(respuesta.data, ...aportantes);
+            setAportantes(respuesta.data);
 
         } catch (error) {
             console.log(error);
-            toast.error('Error al cargar aportantes', { 
-                position: 'top-right', 
-                autoClose: 3000 });
         }
     };
 
@@ -53,32 +47,20 @@ const Tabla = () => {
                     salida: new Date().toString(),
                 };
                 await axios.request({ method: "DELETE", url, headers, data });
+                listarAportantes();
                 toast.success('Aportante eliminado correctamente', {
                     position: 'top-right', 
                     autoClose: 3000})
-                listarAportantes();
             }
         } catch (error) {
             console.log(error);
-            toast.error('Error al cargar aportante', { position: 'top-right' });
         }
     };
 
     useEffect(() => {
         listarAportantes();
-    }, []);
+    }, [auth]);
 
-    /*const formatFecha = (fecha) => {
-        if (!fecha) return "";
-        const date = new Date(fecha);
-        return new Intl.DateTimeFormat("es-ES", {
-        timeZone: "UTC",
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-    }).format(date);
-    };*/
-    
 
     return (
         <>
@@ -122,7 +104,7 @@ const Tabla = () => {
                                             )
                                         }
                                     />
-                                    {auth.rol === "tesorero" && (
+                                    {auth?.rol === "tesorero" && (
                                         <>
                                             <MdInfo
                                                 className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"

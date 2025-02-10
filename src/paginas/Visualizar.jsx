@@ -6,6 +6,8 @@ import ModalAportacion from '../componets/Modals/ModalAportacion';
 import aportacionesContext from '../context/AportacionesProvider';
 import TablaAportaciones from '../componets/TablaAportaciones';
 import AuthContext from '../context/AuthProvider';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const Visualizar = () => {
 
@@ -51,11 +53,10 @@ const Visualizar = () => {
             <div>
                 <h1 className='font-black text-4xl text-gray-500'>Visualizar a detalle a aportante</h1>
                 <hr className='my-4' />
-                <p className='mb-8'>Este submódulo te permite visualizar los datos del aportante</p>
                 {
                     auth.rol === "tesorero" &&
                     (
-                        <button className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700" onClick={handleModal}>Registrar</button>
+                        <button className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 " onClick={handleModal}>Registrar Aportacion</button>
                     )
                 }
             </div>
@@ -64,37 +65,17 @@ const Visualizar = () => {
                     Object.keys(aportante).length != 0 ?
                         (
                             <>
-                                <div className='m-5 flex justify-between'>
-                                    <div>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* ID del aportante: </span>
-                                            {aportante._id}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Nombre del aportante: </span>
-                                            {aportante.nombre}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Apellido del aportante: </span>
-                                            {aportante.apellido}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* celular: </span>
-                                            {aportante.celular}
-                                        </p>
-            
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Email: </span>
-                                            {aportante.email}
-                                        </p>
-                                        <p className="text-md text-gray-00 mt-4">
-                                            <span className="text-gray-600 uppercase font-bold">* Estado: </span>
-                                            <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{aportante.estado && "activo"}</span>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/2138/2138440.png" alt="dogandcat" className='h-80 w-80' />
-                                    </div>
+                                <div className='card-visualizar'>
+                                    <Card style={{ width: '25rem', textAlign: 'center'}}>
+                                        <Card.Header><b>ID: </b>{aportante._id}</Card.Header>
+                                        <ListGroup variant="flush">
+                                            <ListGroup.Item><b>Nombre: </b>{aportante.nombre}</ListGroup.Item>
+                                            <ListGroup.Item><b>Apellido: </b>{aportante.apellido}</ListGroup.Item>
+                                            <ListGroup.Item><b>Email: </b>{aportante.email}</ListGroup.Item>
+                                            <ListGroup.Item><b>Celular: </b>{aportante.celular}</ListGroup.Item>
+                                            <ListGroup.Item ><b>Estado: </b>{aportante.estado && "activo"}</ListGroup.Item>
+                                        </ListGroup>
+                                    </Card>
                                 </div>
                                 <hr className='my-4' />  
                                 {Object.keys(mensaje).length>0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}

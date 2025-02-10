@@ -6,8 +6,8 @@ import logoASO from '../assets/logos/logo_aso.jpg'
 const Dashboard = () => {
     const location = useLocation()
     const urlActual = location.pathname
-    const { auth } = useAuth()
-    
+    const { auth } = useAuth();
+
     return(
         <div>
             <div className='dashboard'>

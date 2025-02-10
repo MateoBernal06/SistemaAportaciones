@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -21,30 +21,28 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit =async (e) =>{
+        e.preventDefault()
+        let url
 
-        const url = form.password.includes("esfot")
-            ? `${import.meta.env.VITE_BACKEND_URL}/aportante/login`
-            : `${import.meta.env.VITE_BACKEND_URL}/login`;
-
-        try {
-            const respuesta = await axios.post(url, form);
-            setAuth(respuesta.data);
-            localStorage.setItem('token', respuesta.data.token);
-            localStorage.setItem('rol', respuesta.data.rol);
-            navigate('/dashboard');
-            toast.success(respuesta.data.msg);
-        } catch (error) {
-            if (error.response) {
-                console.log(error.response.data.msg);
-            } else if (error.request) {
-                console.log("Error de red:", error.request);
-            } else {
-                console.log("Error desconocido:", error.message);
-            }
+        if(form.password.includes("esfot")){
+            url = `${import.meta.env.VITE_BACKEND_URL}/aportante/login`
+        }else{
+            url = `${import.meta.env.VITE_BACKEND_URL}/login`
         }
-    };
+        try{
+            const respuesta = await axios.post(url, form)
+            setAuth(respuesta.data)
+            localStorage.setItem('token', respuesta.data.token)
+            localStorage.setItem('rol', respuesta.data.rol)
+            navigate('/dashboard')
+            toast.success(respuesta.data.msg)
+        }catch(error){
+            console.log(error)
+            toast.error(error.response.data.msg)
+        }
+    }
+
 
     return (
         <>
@@ -58,7 +56,6 @@ const Login = () => {
             ></div>
 
             <div className="w-1/2 h-screen bg-white flex justify-center items-center">
-                <ToastContainer />
                 <div className="md:w-4/5 sm:w-full">
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase text-gray-500">
                         Bienvenido Dragon 🐲

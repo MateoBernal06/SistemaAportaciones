@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import aportacionesContext from "../../context/AportacionesProvider"
-import { toast } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 
 const ModalAportacion = ({ idAportante }) => {
     const { handleModal,registrarAportacion,setModal } = useContext(aportacionesContext)
@@ -53,6 +53,7 @@ const ModalAportacion = ({ idAportante }) => {
 
     return (
         <div className="lg:w-2/4 lg:h-3/5 bg-gray-800 bg-opacity-100 top-1/4 left-1/3 fixed sticky-0 rounded-lg overflow-y-scroll ">
+        <ToastContainer/>
             <p className='text-white uppercase font-bold text-lg text-center mt-4'>Plan de aportacion</p>
             <form className='p-10' onSubmit={handleSubmit}>
 
