@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -46,6 +46,7 @@ const Login = () => {
 
     return (
         <>
+        <ToastContainer />
             <div
                 className="w-1/2 h-screen"
                 style={{

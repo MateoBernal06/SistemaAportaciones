@@ -2,7 +2,7 @@ import { use, useEffect } from 'react'
 import logoDragon from '../assets/dragonite.jpg'
 import axios from 'axios'
 import {Link, useParams} from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import Button from 'react-bootstrap/esm/Button';
 
 export const Confirmar = () => {
@@ -35,6 +35,7 @@ export const Confirmar = () => {
     return (
         
         <div className="flex flex-col items-center justify-center">
+            <ToastContainer />
             <img className="object-cover h-80 w-80 rounded-full border-4 border-solid border-slate-600" src={logoDragon} alt="image description"/>
             <div className="flex flex-col items-center justify-center">
                 <p className="text-3xl md:text-4xl lg:text-5xl text-gray-800 mt-12">Ya puedes iniciar sesión</p>

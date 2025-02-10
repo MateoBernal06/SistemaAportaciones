@@ -65,8 +65,8 @@ const Password = () => {
                 <hr className='my-4' />
                 <p className='mb-2'>Este módulo te permite actualizar el password del usuario</p>
         </div>
-        <form onSubmit={handleSubmit}>
         <ToastContainer />
+        <form onSubmit={handleSubmit}>
             <div>
                 <label
                     htmlFor='passwordactual'

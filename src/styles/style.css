@@ -222,7 +222,7 @@
 
 .card-perfil{
     text-align: center;
-    width: 250px;
+    width: 300px;
 }
 
 .texto-perfil{
@@ -230,7 +230,8 @@
 }
 
 .lugar-card{
-    justify-items: center;
+    display: grid;
+    place-items: center;
 }
 
 .card-visualizar{

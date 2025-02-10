@@ -12,13 +12,13 @@ export const CardPerfilAportante = () => {
                 <Card.Body>
                     <Card.Title>Datos del aportante</Card.Title>
                     <Card.Text>
-                        <p className="texto-perfil"><b>Nombre:</b> {auth.nombre}</p>
+                        <b>Nombre:</b> {auth.nombre}
                     </Card.Text>
                     <Card.Text>
-                        <p className="texto-perfil"><b>Apellido:</b> {auth.apellido}</p>
+                        <b>Apellido:</b> {auth.apellido}
                     </Card.Text>
                     <Card.Text>
-                        <p className="texto-perfil"><b>Celular:</b> {auth.celular}</p>
+                        <b>Celular:</b> {auth.celular}
                     </Card.Text>
                 </Card.Body>
             </Card>

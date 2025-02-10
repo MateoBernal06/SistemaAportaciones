@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from "react"
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 
 
 //paso 1
@@ -40,6 +40,7 @@ export const Register = () => {
 
     return (
         <>
+            <ToastContainer />
             <div className="bg-white flex justify-center items-center w-1/2">
                 <div className="md:w-4/5 sm:w-full">
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">bienvenido dragon 🐉</h1>

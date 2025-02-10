@@ -97,9 +97,9 @@ export const LandinPage = () => {
                             <li>Redes</li>
                             <li>
                                 <div className='redes'>
-                                    <p><img className='logo-redes' src={logoFacebook} alt="log-facebook" /></p>
-                                    <p><img className='logo-redes' src={logoInstagram} alt="log-instagram" /></p>
-                                    <p><img className='logo-redes' src={logoTiktok} alt="log-tiktok" /></p>
+                                    <a href='https://www.facebook.com/share/15f3w14B4u/?mibextid=qi2Omg' target="_blank" rel="noopener noreferrer"><img className='logo-redes' src={logoFacebook} alt="log-facebook" /></a>
+                                    <a href='https://www.instagram.com/garra_esfotdiana?igsh=Mmtja3J2aXFic3B5' target="_blank" rel="noopener noreferrer"><img className='logo-redes' src={logoInstagram} alt="log-instagram" /></a>
+                                    <a href='https://vm.tiktok.com/ZMks7y9RL/' target="_blank" rel="noopener noreferrer"><img className='logo-redes' src={logoTiktok} alt="log-tiktok" /></a>
                                 </div>
                             </li>
                             <li>

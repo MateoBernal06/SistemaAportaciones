@@ -2,8 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/style.css'
 import './styles/style_dashboard.css'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 import Dashboard from './layout/Dashboard'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -30,7 +29,6 @@ import { AportacionesProvider } from './context/AportacionesProvider'
 function App() {
   return (
     <>
-      <ToastContainer />
       <BrowserRouter>
         <AuthProvider>
           <AportacionesProvider>

@@ -24,8 +24,8 @@ export const Forgot = () => {
 
     return (
         <>
-            <div className="bg-white flex justify-center items-center w-1/2">
             <ToastContainer />
+            <div className="bg-white flex justify-center items-center w-1/2">
                 <div className="md:w-4/5 sm:w-full">
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase text-gray-500">Olvidaste tu contraseña!</h1>
                     <small className="text-gray-400 block my-4 text-sm">Ingresa tu correo electrónico para poder recuperar tu cuenta.</small>

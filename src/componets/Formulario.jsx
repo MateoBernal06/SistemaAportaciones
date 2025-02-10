@@ -34,6 +34,11 @@ export const Formulario = ({ aportante }) => {
             toast.error("Todos los campos son obligatorios", {
                 position: "top-right",
                 autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
             });
             return;
         }
@@ -53,6 +58,11 @@ export const Formulario = ({ aportante }) => {
                 toast.success("Aportante actualizado exitosamente!", {
                     position: "top-right",
                     autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
                 });
             } else {
                 form.id = auth._id;
@@ -73,70 +83,72 @@ export const Formulario = ({ aportante }) => {
 
     return (
 
-        <form onSubmit={handleSubmit}>
-        <ToastContainer/>
-            <div>
-                <label
-                    htmlFor='nombre:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Nombre del aportante: </label>
+        <div>
+            <ToastContainer/>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label
+                        htmlFor='nombre:'
+                        className='text-gray-700 uppercase font-bold text-sm'>Nombre del aportante: </label>
+                    <input
+                        id='nombre'
+                        type="text"
+                        className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
+                        placeholder='nombre del aportante'
+                        name='nombre'
+                        value={form.nombre}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label
+                        htmlFor='apellido:'
+                        className='text-gray-700 uppercase font-bold text-sm'>Apellido del aportante: </label>
+                    <input
+                        id='apellido'
+                        type="text"
+                        className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
+                        placeholder='apellido del aportante'
+                        name='apellido'
+                        value={form.apellido}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label
+                        htmlFor='email:'
+                        className='text-gray-700 uppercase font-bold text-sm'>Email: </label>
+                    <input
+                        id='email'
+                        type="email"
+                        className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
+                        placeholder='email del aportante'
+                        name='email'
+                        value={form.email}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label
+                        htmlFor='celular:'
+                        className='text-gray-700 uppercase font-bold text-sm'>Celular: </label>
+                    <input
+                        id='celular'
+                        type="number"
+                        className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
+                        placeholder='celular del aportante'
+                        name='celular'
+                        value={form.celular}
+                        onChange={handleChange}
+                    />
+                </div>
                 <input
-                    id='nombre'
-                    type="text"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='nombre del aportante'
-                    name='nombre'
-                    value={form.nombre}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='apellido:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Apellido del aportante: </label>
-                <input
-                    id='apellido'
-                    type="text"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='apellido del aportante'
-                    name='apellido'
-                    value={form.apellido}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='email:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Email: </label>
-                <input
-                    id='email'
-                    type="email"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='email del aportante'
-                    name='email'
-                    value={form.email}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor='celular:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Celular: </label>
-                <input
-                    id='celular'
-                    type="number"
-                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5'
-                    placeholder='celular del aportante'
-                    name='celular'
-                    value={form.celular}
-                    onChange={handleChange}
-                />
-            </div>
-            <input
-                type="submit"
-                className='bg-gray-600 w-full p-3 
-                    text-slate-300 uppercase font-bold rounded-lg 
-                    hover:bg-gray-900 cursor-pointer transition-all'
-                    value={aportante?._id ? 'Actualizar aportante' : 'Registrar aportante'} />
-        </form>
+                    type="submit"
+                    className='bg-gray-600 w-full p-3 
+                        text-slate-300 uppercase font-bold rounded-lg 
+                        hover:bg-gray-900 cursor-pointer transition-all'
+                        value={aportante?._id ? 'Actualizar aportante' : 'Registrar aportante'} />
+            </form>
+        </div>
     )
 }

@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
-import { MdDeleteForever, MdOutlineSecurityUpdateGood, MdPublishedWithChanges } from "react-icons/md";
+import { MdDeleteForever, MdOutlinePublishedWithChanges, MdOutlineEdit } from "react-icons/md";
 import aportacionesContext from "../context/AportacionesProvider";
 import AuthContext from "../context/AuthProvider";
 import ModalEditarAportacion from "../componets/Modals/ModalEditarAportacion";
+
 
 
 const TablaAportaciones = () => {
@@ -69,12 +70,12 @@ const TablaAportaciones = () => {
                                         auth.rol === "tesorero" &&
                                         (
                                             <>
-                                                <MdPublishedWithChanges 
+                                                <MdOutlineEdit 
                                                     className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
                                                     onClick={() => abrirModalEdicion(aportacion)}
                                                 />
                                                 
-                                                <MdOutlineSecurityUpdateGood 
+                                                <MdOutlinePublishedWithChanges
                                                     className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
                                                     onClick={() => handleStatus(aportacion._id)}
                                                 />

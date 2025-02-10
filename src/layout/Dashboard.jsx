@@ -24,7 +24,7 @@ const Dashboard = () => {
                         </div>
                         <div className='login-register-mod'>
                             <div className='text-md font-semibold text-slate-100'>
-                                Bienvenido - {auth.nombre}
+                                {auth.nombre} {auth.apellido}
                             </div>
                             <div>
                                 <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="border-2 border-green-600 rounded-full" width={50} height={50} />

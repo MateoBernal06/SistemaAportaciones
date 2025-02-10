@@ -1,17 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import { MdDeleteForever, MdNoteAdd, MdInfo } from "react-icons/md";
+import { MdDeleteForever, MdNoteAdd, MdOutlineEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthProvider";
 import Mensaje from "./Alertas/Mensajes";
-import { toast } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
 
 const Tabla = () => {
     const { auth } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [aportantes, setAportantes] = useState([]);
-    const [mensaje, setMensaje] = useState(null);
 
     const listarAportantes = async () => {
         try {
@@ -64,6 +63,7 @@ const Tabla = () => {
 
     return (
         <>
+        <ToastContainer />
             {aportantes.length === 0 ? (
                 <Mensaje tipo={"active"}>{"No existen registros"}</Mensaje>
             ) : (
@@ -106,7 +106,7 @@ const Tabla = () => {
                                     />
                                     {auth?.rol === "tesorero" && (
                                         <>
-                                            <MdInfo
+                                            <MdOutlineEdit
                                                 className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
                                                 onClick={() =>
                                                     navigate(
