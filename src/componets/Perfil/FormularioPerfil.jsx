@@ -43,15 +43,19 @@ const FormularioPerfil = () => {
             });
             return;
         }
-        toast.success('Datos Actualizados con exito',{
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
+        const resultado = await actualizarPerfil(form);
+        if (resultado.tipo) {
+            alert("Datos Actualizados con exito")
+        } else {
+            toast.error(resultado.respuesta, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,})
+        }
     };
 
     return (
