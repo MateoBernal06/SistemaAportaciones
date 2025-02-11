@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import Button from 'react-bootstrap/esm/Button';
+import imagenForgot from '../assets/images/bandera_aso.jpg'
 
 export const Forgot = () => {
     // PASO 1: inicializar el estado con un objeto con un campo email
@@ -53,7 +54,12 @@ export const Forgot = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-1/2 h-screen bg-[url('/public/images/bandera_aso.jpg')] bg-no-repeat bg-cover bg-center sm:block hidden"></div>
+            <img className="w-1/2 h-screen" 
+                    style={{
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                    src={imagenForgot} alt="logo-esfot"/>
         </>
     );
 };

@@ -3,7 +3,7 @@ import { useState } from "react"
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
 import { ToastContainer,toast } from 'react-toastify';
-
+import imagenRegistro from '../assets/images/dragon_forgot.jpg'
 
 //paso 1
 export const Register = () => {
@@ -101,14 +101,11 @@ export const Register = () => {
 
             </div>
 
-            <div
-                className="w-1/2 h-screen"
-                style={{
-                    backgroundImage: "url('/public/images/dragon_forgot.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                }}
-            ></div>
+            <img className="w-1/2 h-screen" style={{
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+        }}
+        src={imagenRegistro} alt="imagen-registro"/>
         </>
     )
 }

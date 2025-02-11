@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
 import { ToastContainer,toast } from 'react-toastify';
+import imagenLogin from '../assets/images/directiva_login.jpg'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -47,15 +48,12 @@ const Login = () => {
     return (
         <>
         <ToastContainer />
-            <div
-                className="w-1/2 h-screen"
-                style={{
-                    backgroundImage: "url('/public/images/directiva_login.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                }}
-            ></div>
-
+        <img className="w-1/2 h-screen" 
+        style={{
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+        }}
+        src={imagenLogin} alt="logo-esfot"/>
             <div className="w-1/2 h-screen bg-white flex justify-center items-center">
                 <div className="md:w-4/5 sm:w-full">
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase text-gray-500">
